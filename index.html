@@ -1,54 +1,120 @@
-Create a beautiful, mobile-responsive payment website for:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maha Ganapathi Elaignargal Nala Sangam</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:Arial,sans-serif;
+  background:#fff6e6;color:#482018;
+}
+header{
+  background:linear-gradient(135deg,#641b24,#9b3825);
+  color:#fff;text-align:center;padding:30px 15px;
+  border-bottom:5px solid #e7b64c;
+}
+.om{font-size:35px;color:#ffd66b}
+.ganesha{font-size:65px}
+h1{font-size:25px;margin:8px 0}
+header p{color:#ffe6b0}
+.container{
+  max-width:520px;margin:25px auto;padding:25px;
+  background:white;border:1px solid #e5c88b;
+  border-radius:16px;box-shadow:0 5px 18px #00000015;
+}
+h2{text-align:center;color:#8c2925}
+label{display:block;margin:16px 0 6px;font-weight:bold}
+input,select{
+  width:100%;padding:13px;border:1px solid #c9ad91;
+  border-radius:8px;font-size:16px;background:#fffdf8;
+}
+button{
+  width:100%;margin-top:23px;padding:15px;
+  border:0;border-radius:9px;background:#168044;
+  color:white;font-size:18px;font-weight:bold;cursor:pointer;
+}
+.note{
+  background:#fff4d9;padding:12px;border-radius:8px;
+  font-size:14px;line-height:1.6;margin-top:18px;
+}
+.contact{text-align:center;line-height:1.8;margin-top:20px}
+footer{
+  background:#641b24;color:white;text-align:center;
+  padding:20px 10px;margin-top:30px;font-size:13px;
+}
+</style>
+</head>
+<body>
 
-**MAHA GANAPATHI ELAIGNARGAL NALA SANGAM, DHARMAPURI**
+<header>
+  <div class="om">ॐ</div>
+  <div class="ganesha">🐘</div>
+  <h1>MAHA GANAPATHI</h1>
+  <p>ELAIGNARGAL NALA SANGAM, DHARMAPURI</p>
+  <p>🙏 விநாயகர் துணை 🙏</p>
+</header>
 
-### Design
-- Traditional Lord Vinayagar / Ganesha theme.
-- Use maroon, saffron, gold, cream and green colours.
-- Attractive devotional header with Om symbol and Ganesha image.
-- Professional, modern and easy-to-use layout.
-- Mobile-friendly design.
+<div class="container">
+  <h2>🙏 Sangam Payment</h2>
 
-### Payment Details
-Display a payment form with:
-1. Member / Donor Name
-2. Mobile Number
-3. Payment Purpose:
-   - Monthly Contribution
-   - Donation
-   - Event Fees
-4. Amount in INR.
+  <form id="paymentForm">
+    <label for="name">Member / Donor Name</label>
+    <input id="name" type="text" placeholder="Enter your name" required>
 
-### UPI Payment Integration
-Use this exact UPI ID:
+    <label for="mobile">Mobile Number</label>
+    <input id="mobile" type="tel" inputmode="numeric"
+      pattern="[0-9]{10}" maxlength="10"
+      placeholder="Enter 10-digit mobile number" required>
 
-`MAHAGANAPATHI43720@iob`
+    <label for="purpose">Payment Purpose</label>
+    <select id="purpose" required>
+      <option value="">Select payment purpose</option>
+      <option>Monthly Contribution</option>
+      <option>Donation</option>
+      <option>Event Fees</option>
+    </select>
 
-The PAY NOW button must open the installed UPI payment application chooser using this exact working link:
+    <label for="amount">Amount (₹)</label>
+    <input id="amount" type="number" min="1" step="1"
+      placeholder="Enter amount" required>
 
-`upi://pay?pa=MAHAGANAPATHI43720%40iob`
+    <button type="submit">PAY NOW</button>
+  </form>
 
-Important:
-- Do not add an untested UPI payment gateway.
-- Do not change the UPI ID.
-- Do not add QR code functionality.
-- Do not add Google Sheets integration.
-- Do not claim that payment succeeded automatically.
-- Show a message asking users to verify the recipient name and payment in their UPI app.
+  <div class="note">
+    <b>UPI ID:</b> MAHAGANAPATHI43720@iob<br><br>
+    After pressing PAY NOW, select your UPI app.
+    Enter the payment amount in the app if required.
+    Please verify the recipient and amount before paying.
+    Payment is not confirmed by this website.
+  </div>
 
-### Contact Details
-Phone: 7845482009  
-Email: mgensdharmapuri@gmail.com
+  <div class="contact">
+    <b>Contact Us</b><br>
+    Phone: 7845482009<br>
+    Email: mgensdharmapuri@gmail.com
+  </div>
+</div>
 
-### Footer
-© Maha Ganapathi Elaignargal Nala Sangam, Dharmapuri.
+<footer>
+  © Maha Ganapathi Elaignargal Nala Sangam, Dharmapuri.
+  <br>🙏 Thank you for your contribution 🙏
+</footer>
 
-### Technical Requirements
-- Create a complete `index.html`.
-- Use HTML, CSS and JavaScript.
-- No paid APIs or external backend required.
-- Ensure the PAY NOW button works on Android mobile devices.
-- Add form validation.
-- Make the website suitable for free GitHub Pages hosting.
+<script>
+document.getElementById("paymentForm").addEventListener("submit",
+function(event){
+  event.preventDefault();
 
-Finally, provide instructions to publish the website using GitHub Pages and obtain a public website URL.
+  if(!this.reportValidity()) return;
+
+  // Exact UPI link confirmed as working by the user.
+  window.location.href =
+    "upi://pay?pa=MAHAGANAPATHI43720%40iob";
+});
+</script>
+
+</body>
+</html>
